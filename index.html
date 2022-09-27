@@ -1,17 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="fr">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Website</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-  </head>
-  <body>
-    <main>
-        <h1>Welcome to My Website</h1>  
-    </main>
-	<script src="index.js"></script>
-  </body>
+    <title>Facebook Messenger fake chat Generator</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+
+    <div class="screen">
+        <div class="header">
+            <img src="assets/img/back.png" alt="">
+            <img src="assets/img/profil.png" alt="">
+            <span>Mon putois d'amour</span>
+            <img src="assets/img/phone.png" alt="">
+            <img src="assets/img/cam.png" alt="">
+            <img src="assets/img/info.png" alt="">            
+        </div>
+        <div class="conversation">
+            <div class="messages messages-received">
+                <div class="message">Salut</div>
+            </div>
+        </div>
+        <div class="text-bar">
+            <form id="msgForm" class="text-bar-field">
+                <input id="textArea" type="text" name="text-bar-input" placeholder="Aa"/>
+            </form>
+            <div class="text-bar-thumb">
+                <button id="validerBtn" class="thumb"></button>
+            </div>
+        </div>
+    </div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="assets/js/script.js"></script>
+</body>
 </html>
