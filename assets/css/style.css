@@ -3,7 +3,7 @@
     src: url(../Helvetica.ttf);
   }
 html {
-    height: 97%;
+    height: 98%;
 }
 
 body {
@@ -12,7 +12,7 @@ body {
     font-size: 3em;
 }
 input{
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 .screen {
