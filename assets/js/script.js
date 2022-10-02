@@ -201,11 +201,35 @@ function searchForResponse(txt) {
     console.log(txt.length);
 
     if (txt.includes("salut")) {
+        //first
         sendNewMessage(1,"Comment ça va ?");
+    //  } else if(txt.includes("aaaaaaaaaaaaaaaaaaaaaaaaa")){
+    } else if(txt.includes("et toi")){
+        //first
+        sendNewMessage(1,"Ca va. 😁");
+        sendNewMessage(1,"Et sinon quoi de neuf ?");
+    } else if(txt.includes("ça va") || txt.includes("ca va") || txt.includes("sa va")){
+        sendNewMessage(1,"Et alors rien d'autre à raconter ?");
+    } else if(txt.includes("a+")){
+        sendNewMessage(1,"Non, ne me laisse pas 😭");
+        sendNewMessage(1,"Il fait froid et tout noir quand tu eteins ton téléphone.");
+    } else if(txt.includes("va crever, connard")){
+        sendNewMessage(1,"Effacement");
+    } else if(txt.includes("Non")){
+        sendNewMessage(1,"C'est toujours aussi difficile d'avoir des nouvelles de ta part.");
+    } else if(txt.includes("Rien")){
+        sendNewMessage(1,"Toujours aussi loquace à ce que je vois");
     } else if(txt.includes("bonne nuit")){
         sendNewMessage(1,"Bonne nuit. 😘");
-    } else if(txt.includes("salut")){
+    }else if(txt.includes("je t'aime") || txt.includes("je t aime") ){
+        sendNewMessage(1,"Je sais, comment pourait-il en être autrement. 🤣");
+        setTimeout(() => {
+            sendNewMessage(1,"Mais moi aussi je t'aime. 😘");
+        }, 3000);
+    }else if(txt.includes("aaaaaaaaaaaaaaaaaaaaaaaaa")){
 
+    } else if(txt.codePointAt(0) == 128405){
+        sendNewMessage(1,"T'inquiète, moi aussi je t'aime. 😘");
     } else if(txt.codePointAt(0) == 129318){
         sendNewMessage(1,"Tu l'aimes vraiment beaucoup cet emoji, non ?");
         sendNewMessage(1,"😝");
