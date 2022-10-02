@@ -246,7 +246,6 @@ function searchForResponse(txt) {
             }, 1500);
         }
         
-    //  } else if(txt.includes("aaaaaaaaaaaaaaaaaaaaaaaaa")){
     } else if(txt.includes("et toi")){
         //first
         if (localStorage.getItem("firstMsg2") == "true") {
@@ -265,7 +264,6 @@ function searchForResponse(txt) {
                 sendNewMessage(1,"Et sinon quoi de neuf ?");
             }, 4500);
         }
-        
     } else if(txt == "non"){
         sendNewMessage(1,"C'est toujours aussi difficile d'avoir des nouvelles de ta part.");
     } else if(txt == "rien"){
