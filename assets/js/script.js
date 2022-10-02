@@ -112,8 +112,6 @@ function sendBtn() {
         sendNewMessage(2,'&#x1F61D', true);
         //console.log("emoji");
     }
-    
-
 }
 
 //Update text area
@@ -138,4 +136,25 @@ function submitedMsg(e) {
     e.preventDefault();
     sendNewMessage(2,document.getElementById("textArea").value)
     return false;
+}
+
+//Header Buttons
+document.getElementById("back").addEventListener('click', backBtn);
+function backBtn() {
+    alert("Pas de bol ... tu es coincée avec moi. 😂");
+}
+
+document.getElementById("phone").addEventListener('click', phoneBtn);
+function phoneBtn() {
+    alert("phone");
+}
+
+document.getElementById("cam").addEventListener('click', camBtn);
+function camBtn() {
+    alert("cam");
+}
+
+document.getElementById("info").addEventListener('click', infoBtn);
+function infoBtn() {
+    alert("info");
 }
