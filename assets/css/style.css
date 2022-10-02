@@ -49,7 +49,7 @@ input{
     font-weight: bold;
 }
 .conversation {
-    height: calc(100% - 300px);
+    height: calc(100% - 310px);
     overflow: auto;
     padding: 40px 20px 0 20px;
 }
