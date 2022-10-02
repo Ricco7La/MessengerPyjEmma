@@ -45,9 +45,8 @@ $('button.clear-chat').click(function () {
  * @param from Sender person (1/2).
  */
 function sendNewMessage(from, msgText) {
-    let newMessageText = msgText;
 
-    if (newMessageText === '' || newMessageText === null) {
+    if (msgText === '' || msgText === null) {
         return;
     }
 
@@ -59,10 +58,10 @@ function sendNewMessage(from, msgText) {
     }
 
     // Create new message wrapper.
-    let messageWrapper = $(' <div class="message"></div>');
+    let messageWrapper = $(' <div class="message">'+msgText+'</div>');
 
     // Add message text to message wrapper.
-    messageWrapper.text(newMessageText);
+    //messageWrapper.text(msgText);
 
     // Get last conversation box.
     let lastConversation = conversation.children().last();
@@ -95,10 +94,16 @@ function sendNewMessage(from, msgText) {
 // Custom Script
 
 //Button
-document.getElementById("validerBtn").addEventListener('click', testBtn);
-function testBtn() {
-    //alert(document.getElementById("textArea").value);
-    sendNewMessage(2,document.getElementById("textArea").value)
+document.getElementById("validerBtn").addEventListener('click', sendBtn);
+function sendBtn() {
+    //alert(document.getElementById("textArea").value); 
+    if (document.getElementById("validerBtn").className == "send") {
+        sendNewMessage(2,document.getElementById("textArea").value);
+    } else {
+        sendNewMessage(2,'&#x1F61D');
+        //console.log("emoji");
+    }
+    
 
 }
 
