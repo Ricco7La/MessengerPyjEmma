@@ -157,22 +157,29 @@ function backBtn() {
     backCounter++;
     var myHtml = "<span>... tu es coincée avec moi ! 😂😂😂 </span>" + "<br>" + "<span>Et c'est pas en cliquant <b style='color:red'>"+ (10 - backCounter) +"</b> fois de plus que ça changera</span>";
     var myTitle = 'Pas de bol ... ';
+    var myIcon = 'error';
 
     if (backCounter >= 15 && backCounter > localStorage.getItem("record")) {
-        myHtml = "<span>Bravo tu as battu ton record. </span>" + "<br>" + "<span> Tu as cliqué "+ backCounter +" sur ce bouton</span>"
+        myHtml = "<span>Bravo tu as battu ton record. </span>" + "<br>" + "<span> Tu as cliqué "+ backCounter +" fois sur ce bouton</span>"
         myTitle = '🥳🥳 🎉🎉🎉';
+        myIcon = "success";
+        localStorage.setItem("record", backCounter);
     }if (backCounter >= 15) {
-        myHtml = "<span> Tu as cliqué "+ backCounter +" sur ce bouton</span>" + "<br>" + "<span> Ton record est de "+ localStorage.getItem("record") +"</span>"
+        myHtml = "<span> Tu as cliqué "+ backCounter +" fois sur ce bouton</span>" + "<br>" + "<span> Ton record est de "+ localStorage.getItem("record") +"</span>"
         myTitle = 'Pour ton information';
+        myIcon = "info";
     } else if (backCounter == 14) {
         myHtml = "<span>... C'est plus la peine maintenant.</span>"
         myTitle = '🤔 🤔 🤔';
+        myIcon = "question";
     } else if (backCounter == 13) {
         myHtml = "<span>... ne vas pas plus loin.</span>"
         myTitle = 'Stop ...';
+        myIcon = "warning";
     } else if (backCounter >= 12) {
         myHtml = "<span>... tu peux arrêter maintenant.</span>"
         myTitle = 'Sérieux ...';
+        myIcon = "warning";
     } else if (backCounter >= 10) {
         myHtml = "<span>... belle persévérance. Mais je t'ai dis que ça changerait rien de continuer à cliquer.</span>"
         myTitle = 'Bravo ...';
