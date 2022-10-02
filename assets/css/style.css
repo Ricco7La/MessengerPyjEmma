@@ -19,7 +19,7 @@ body {
 }
 
 input{
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 .screen {
@@ -93,8 +93,8 @@ input{
 .message--emoji {
     background-color: transparent !important;
     font-size: 2em !important;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .text-bar {
     height: 100px;

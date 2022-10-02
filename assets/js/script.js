@@ -5,6 +5,8 @@ let conversation = $('.conversation');
 let newMessage = $('textarea.new-message');
 let textBarInput = $('input[name=text-bar-input]');
 
+const myTimeout = null;
+
 /**
  * Fill new-message textarea.
  */
@@ -97,16 +99,15 @@ function sendNewMessage(from, msgText) {
     
     if (from === 2) {
         //random delay for response
-        var timer = Math.floor(Math.random() * 3000) + 1500;
-        const myTimeout = setTimeout(searchForResponse.bind(null, msgText), timer); 
+        var timer = Math.floor(Math.random() * 2500) + 500;
+        setTimeout(searchForResponse.bind(null, msgText), timer); 
         
         // Make message input empty.
         newMessage.val(null);
         textBarInput.val(null);
         document.getElementById("validerBtn").className = "thumb";
     }
-    
-    
+        
 }
 
 
@@ -150,12 +151,35 @@ function submitedMsg(e) {
 }
 
 //Header Buttons
+var backCounter = 0;
 document.getElementById("back").addEventListener('click', backBtn);
 function backBtn() {
-    //alert("Pas de bol ... tu es coincée avec moi. 😂");
+    backCounter++;
+    var myHtml = "<span>... tu es coincée avec moi ! 😂😂😂 </span>" + "<br>" + "<span>Et c'est pas en cliquant <b style='color:red'>"+ (10 - backCounter) +"</b> fois de plus que ça changera</span>";
+    var myTitle = 'Pas de bol ... ';
+
+    if (backCounter >= 15 && backCounter > localStorage.getItem("record")) {
+        myHtml = "<span>Bravo tu as battu ton record. </span>" + "<br>" + "<span> Tu as cliqué "+ backCounter +" sur ce bouton</span>"
+        myTitle = '🥳🥳 🎉🎉🎉';
+    }if (backCounter >= 15) {
+        myHtml = "<span> Tu as cliqué "+ backCounter +" sur ce bouton</span>" + "<br>" + "<span> Ton record est de "+ localStorage.getItem("record") +"</span>"
+        myTitle = 'Pour ton information';
+    } else if (backCounter == 14) {
+        myHtml = "<span>... C'est plus la peine maintenant.</span>"
+        myTitle = '🤔 🤔 🤔';
+    } else if (backCounter == 13) {
+        myHtml = "<span>... ne vas pas plus loin.</span>"
+        myTitle = 'Stop ...';
+    } else if (backCounter >= 12) {
+        myHtml = "<span>... tu peux arrêter maintenant.</span>"
+        myTitle = 'Sérieux ...';
+    } else if (backCounter >= 10) {
+        myHtml = "<span>... belle persévérance. Mais je t'ai dis que ça changerait rien de continuer à cliquer.</span>"
+        myTitle = 'Bravo ...';
+    } 
     Swal.fire({
-        title: 'Pas de bol ... ',
-        text: "... tu es coincée avec moi ! 😂😂😂",
+        title: myTitle,
+        html: myHtml,
         icon: 'error',
         confirmButtonColor: "#0053cd",
         confirmButtonText: 'OK'
@@ -194,11 +218,12 @@ function infoBtn() {
       })
 }
 
-
+var lastTxt = ""
+var repeatCounter = 1;
 //Bot Function
 function searchForResponse(txt) {
     txt = txt.trim().toLowerCase();
-    console.log(txt.length);
+    //console.log(txt.length);
 
     if (txt.includes("salut")) {
         //first
@@ -208,6 +233,16 @@ function searchForResponse(txt) {
         //first
         sendNewMessage(1,"Ca va. 😁");
         sendNewMessage(1,"Et sinon quoi de neuf ?");
+    } else if(txt.codePointAt(0) == 128541){        
+            if (lastTxt.codePointAt(0) != 128541) {
+                repeatCounter = 1;
+            }
+            if (repeatCounter >= 7 ) {
+                sendNewMessage(1,"🖕");
+            } else {
+                repeatCounter++;
+                sendNewMessage(1,"😝");
+            }   
     } else if(txt.includes("ça va") || txt.includes("ca va") || txt.includes("sa va")){
         sendNewMessage(1,"Et alors rien d'autre à raconter ?");
     } else if(txt.includes("a+")){
@@ -221,13 +256,27 @@ function searchForResponse(txt) {
         sendNewMessage(1,"Toujours aussi loquace à ce que je vois");
     } else if(txt.includes("bonne nuit")){
         sendNewMessage(1,"Bonne nuit. 😘");
+    } else if(txt.includes("tu me manques") || txt.includes("tu me manque")){
+        sendNewMessage(1,"Toi aussi.");
+    }else if(txt.includes("mon cousin préferé que j'aime trop")){
+        sendNewMessage(1,"Bon, celui-ci je pense pas qu'il vienne de toi, c'est moi qui ai du te le souffler");
+        myTimeout = setTimeout(() => {
+            sendNewMessage(1,"Même si tu le penses pas ça me fait quand même plaisir. 😍");
+        }, 1500);
+        myTimeout = setTimeout(() => {
+            sendNewMessage(1,"Enfin quand je dis moi je parle de moi/moi et pas du moi/bot");
+        }, 3000);
+        myTimeout = setTimeout(() => {
+            sendNewMessage(1,"Et sinon, moi aussi je t'aime.");
+        }, 4500);
+        myTimeout = setTimeout(() => {
+            sendNewMessage(1,"Tu me manques. 😘");
+        }, 5500);
     }else if(txt.includes("je t'aime") || txt.includes("je t aime") ){
         sendNewMessage(1,"Je sais, comment pourait-il en être autrement. 🤣");
-        setTimeout(() => {
+        myTimeout = setTimeout(() => {
             sendNewMessage(1,"Mais moi aussi je t'aime. 😘");
         }, 3000);
-    }else if(txt.includes("aaaaaaaaaaaaaaaaaaaaaaaaa")){
-
     } else if(txt.codePointAt(0) == 128405){
         sendNewMessage(1,"T'inquiète, moi aussi je t'aime. 😘");
     } else if(txt.codePointAt(0) == 129318){
@@ -255,5 +304,20 @@ function searchForResponse(txt) {
         } else {
             sendNewMessage(1,"...");
         }  
+    }
+
+    lastTxt = txt;
+
+}
+
+function init() {
+    if(localStorage.getItem("record") == null){
+        localStorage.setItem("record", 0);
+    }
+    if(localStorage.getItem("firstMsg1") == null){
+        localStorage.setItem("firstMsg1", false);
+    }
+    if(localStorage.getItem("firstMsg2") == null){
+        localStorage.setItem("firstMsg2", false);
     }
 }
