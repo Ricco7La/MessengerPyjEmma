@@ -142,7 +142,12 @@ function submitedMsg(e) {
 document.getElementById("back").addEventListener('click', backBtn);
 function backBtn() {
     //alert("Pas de bol ... tu es coincée avec moi. 😂");
-    swal("Pas de bol ... tu es coincée avec moi. 😂");
+    Swal.fire({
+        title: 'Error!',
+        text: "Pas de bol ... tu es coincée avec moi. 😂",
+        icon: 'error',
+        confirmButtonText: 'Cool'
+      })
 }
 
 document.getElementById("phone").addEventListener('click', phoneBtn);
