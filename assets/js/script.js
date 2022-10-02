@@ -187,7 +187,7 @@ function backBtn() {
     Swal.fire({
         title: myTitle,
         html: myHtml,
-        icon: 'error',
+        icon: myIcon,
         confirmButtonColor: "#0053cd",
         confirmButtonText: 'OK'
       })
