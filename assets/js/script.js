@@ -105,6 +105,7 @@ function sendNewMessage(from, msgText, isEmoji = false) {
 document.getElementById("validerBtn").addEventListener('click', sendBtn);
 function sendBtn() {
     //alert(document.getElementById("textArea").value); 
+    console.log(document.getElementById("textArea").value);
     if (document.getElementById("validerBtn").className == "send") {
         sendNewMessage(2,document.getElementById("textArea").value);       
     } else {
