@@ -44,7 +44,7 @@ $('button.clear-chat').click(function () {
  *
  * @param from Sender person (1/2).
  */
-function sendNewMessage(from, msgText) {
+function sendNewMessage(from, msgText, isEmoji = false) {
 
     if (msgText === '' || msgText === null) {
         return;
@@ -58,7 +58,15 @@ function sendNewMessage(from, msgText) {
     }
 
     // Create new message wrapper.
-    let messageWrapper = $(' <div class="message">'+msgText+'</div>');
+    let messageWrapper;
+
+    if (isEmoji) {
+        messageWrapper = $(' <div class="message message--emoji">'+msgText+'</div>');
+    } else {
+        messageWrapper = $(' <div class="message"></div>');
+        // Add message text to message wrapper.
+        messageWrapper.text(msgText);
+    }
 
     // Add message text to message wrapper.
     //messageWrapper.text(msgText);
@@ -99,8 +107,9 @@ function sendBtn() {
     //alert(document.getElementById("textArea").value); 
     if (document.getElementById("validerBtn").className == "send") {
         sendNewMessage(2,document.getElementById("textArea").value);
+        alert(document.getElementById("textArea").value);
     } else {
-        sendNewMessage(2,'&#x1F61D');
+        sendNewMessage(2,'&#x1F61D', true);
         //console.log("emoji");
     }
     
