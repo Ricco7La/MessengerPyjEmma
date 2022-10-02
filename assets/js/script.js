@@ -141,7 +141,8 @@ function submitedMsg(e) {
 //Header Buttons
 document.getElementById("back").addEventListener('click', backBtn);
 function backBtn() {
-    alert("Pas de bol ... tu es coincée avec moi. 😂");
+    //alert("Pas de bol ... tu es coincée avec moi. 😂");
+    swal("Pas de bol ... tu es coincée avec moi. 😂");
 }
 
 document.getElementById("phone").addEventListener('click', phoneBtn);
