@@ -143,24 +143,42 @@ document.getElementById("back").addEventListener('click', backBtn);
 function backBtn() {
     //alert("Pas de bol ... tu es coincée avec moi. 😂");
     Swal.fire({
-        title: 'Error!',
-        text: "Pas de bol ... tu es coincée avec moi. 😂",
+        title: 'Pas de bol ... ',
+        text: "... tu es coincée avec moi ! 😂😂😂",
         icon: 'error',
-        confirmButtonText: 'Cool'
+        confirmButtonColor: "#0053cd",
+        confirmButtonText: 'OK'
       })
 }
 
 document.getElementById("phone").addEventListener('click', phoneBtn);
 function phoneBtn() {
-    alert("phone");
+    //alert("phone");
+    Swal.fire({
+        title: 'Dring ... Dring ... Dring ',
+        text: "Il n'y a personne. ",
+        icon: 'warning',
+        confirmButtonColor: "#0053cd",
+        confirmButtonText: "OK"
+      })
 }
 
 document.getElementById("cam").addEventListener('click', camBtn);
 function camBtn() {
-    alert("cam");
+Swal.fire({
+    text: "C'est quand tu veux pour un appel vidéo mais là ça va pas être possible",
+    icon: 'warning',
+    confirmButtonColor: "#0053cd",
+    confirmButtonText: "Promis, je t'appele bientôt."
+  })
 }
 
 document.getElementById("info").addEventListener('click', infoBtn);
 function infoBtn() {
-    alert("info");
+    Swal.fire({
+        text: "C'est juste un bot  ",
+        icon: 'info',
+        confirmButtonColor: "#0053cd",
+        confirmButtonText: 'OK'
+      })
 }
