@@ -93,6 +93,8 @@ input{
 .message--emoji {
     background-color: transparent !important;
     font-size: 2em !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .text-bar {
     height: 100px;

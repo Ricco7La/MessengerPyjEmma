@@ -44,7 +44,9 @@ $('button.clear-chat').click(function () {
  *
  * @param from Sender person (1/2).
  */
-function sendNewMessage(from, msgText, isEmoji = false) {
+function sendNewMessage(from, msgText) {
+
+    var isEmoji = msgText.codePointAt(0) > 120000 && msgText.codePointAt(0) < 150000
 
     if (msgText === '' || msgText === null) {
         return;
@@ -91,11 +93,20 @@ function sendNewMessage(from, msgText, isEmoji = false) {
 
     // Scroll to bottom
     conversation[0].scrollTop = conversation[0].scrollHeight
+
     
-    // Make message input empty.
-    newMessage.val(null);
-    textBarInput.val(null);
-    document.getElementById("validerBtn").className = "thumb";
+    if (from === 2) {
+        //random delay for response
+        var timer = Math.floor(Math.random() * 3000) + 1500;
+        const myTimeout = setTimeout(searchForResponse.bind(null, msgText), timer); 
+        
+        // Make message input empty.
+        newMessage.val(null);
+        textBarInput.val(null);
+        document.getElementById("validerBtn").className = "thumb";
+    }
+    
+    
 }
 
 
@@ -109,7 +120,7 @@ function sendBtn() {
     if (document.getElementById("validerBtn").className == "send") {
         sendNewMessage(2,document.getElementById("textArea").value);       
     } else {
-        sendNewMessage(2,'&#x1F61D', true);
+        sendNewMessage(2,'😝');
         //console.log("emoji");
     }
 }
@@ -176,9 +187,49 @@ Swal.fire({
 document.getElementById("info").addEventListener('click', infoBtn);
 function infoBtn() {
     Swal.fire({
-        text: "C'est juste un bot  ",
+        text: "C'est juste un bot hein, c'est pas vraiment moi qui parle ! 😝",
         icon: 'info',
         confirmButtonColor: "#0053cd",
         confirmButtonText: 'OK'
       })
+}
+
+
+//Bot Function
+function searchForResponse(txt) {
+    txt = txt.trim().toLowerCase();
+    console.log(txt.length);
+
+    if (txt.includes("salut")) {
+        sendNewMessage(1,"Comment ça va ?");
+    } else if(txt.includes("bonne nuit")){
+        sendNewMessage(1,"Bonne nuit. 😘");
+    } else if(txt.includes("salut")){
+
+    } else if(txt.codePointAt(0) == 129318){
+        sendNewMessage(1,"Tu l'aimes vraiment beaucoup cet emoji, non ?");
+        sendNewMessage(1,"😝");
+    } else if(txt.codePointAt(0) > 120000 && txt.codePointAt(0) < 150000){
+        sendNewMessage(1,txt);        
+    }else {
+        var rnd = Math.floor(Math.random() * 10 + 1);
+        
+        if (rnd == 1 || rnd == 2) { 
+            sendNewMessage(1,"Je suis pas sur de comprendre.");
+        } else if (rnd == 3 || rnd == 4) {  
+            sendNewMessage(1,"D'accord avec toi.");
+        } else if (rnd == 5) {  
+            sendNewMessage(1,"Ouais, si tu le dis.");
+        } else if (rnd == 6) {  
+            sendNewMessage(1,"Tu as totalement raison");
+        } else if (rnd == 7) { 
+            sendNewMessage(1,"Essaie encore");
+        } else if (rnd == 8) { 
+            sendNewMessage(1,"🤦🏻‍♂");
+        } else if (rnd == 9) { 
+            sendNewMessage(1,"🤔");
+        } else {
+            sendNewMessage(1,"...");
+        }  
+    }
 }
