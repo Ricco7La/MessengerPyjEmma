@@ -99,7 +99,7 @@ function sendNewMessage(from, msgText) {
     
     if (from === 2) {
         //random delay for response
-        var timer = Math.floor(Math.random() * 2500) + 500;
+        var timer = Math.floor(Math.random() * 2000) + 1000;
         setTimeout(searchForResponse.bind(null, msgText), timer); 
         
         // Make message input empty.
@@ -218,7 +218,7 @@ Swal.fire({
 document.getElementById("info").addEventListener('click', infoBtn);
 function infoBtn() {
     Swal.fire({
-        text: "C'est juste un bot hein, c'est pas vraiment moi qui parle ! 😝",
+        html: "C'est juste un bot hein, c'est pas vraiment moi qui parle ! 😝 <br> Si jamais tu veux le réinitialiser, il suffit de lui dire : <br>\"Va crever, Connard !\"",
         icon: 'info',
         confirmButtonColor: "#0053cd",
         confirmButtonText: 'OK'
@@ -232,14 +232,46 @@ function searchForResponse(txt) {
     txt = txt.trim().toLowerCase();
     //console.log(txt.length);
 
-    if (txt.includes("salut")) {
+    if (txt.includes("quoi de neuf")) {
+        sendNewMessage(1,"Honnêtement, je sais rien, c'est déjà assez difficile d'imaginer les réactions que tu pourrais avoir, mais les événements qui pourraient m’arriver, c'est bien au-delà de mes compétences.");
+    } else if (txt.includes("salut")) {
         //first
-        sendNewMessage(1,"Comment ça va ?");
+        if (localStorage.getItem("firstMsg1") == "true") {
+            sendNewMessage(1,"Comment ça va ?");
+        } else {
+            localStorage.setItem("firstMsg1", true);
+            sendNewMessage(1,"Je sais pas trop comment je dois le prendre. Moi, je me fais ignorer mais quand c'est un bot la tu réponds. 😢");
+            setTimeout(() => {
+                sendNewMessage(1,"Bon passons. Là, normalement je dirais : Comment ça va ?");
+            }, 1500);
+        }
+        
     //  } else if(txt.includes("aaaaaaaaaaaaaaaaaaaaaaaaa")){
     } else if(txt.includes("et toi")){
         //first
-        sendNewMessage(1,"Ca va. 😁");
-        sendNewMessage(1,"Et sinon quoi de neuf ?");
+        if (localStorage.getItem("firstMsg2") == "true") {
+            sendNewMessage(1,"Ca va. 😁");
+            sendNewMessage(1,"Et sinon quoi de neuf ?");
+        } else {
+            localStorage.setItem("firstMsg2", true);
+            sendNewMessage(1,"Tu me demande jamais ça à moi d'habitude. Je ferais mieux d'être un bot tiens. 😤");
+            setTimeout(() => {
+                sendNewMessage(1,"Tu me brise le coeur là.💔");
+            }, 1500);
+            setTimeout(() => {
+                sendNewMessage(1,"Enfin bon, en vrai, j'en saurais jamais rien donc on va dire que ça va. 😑");
+            }, 3000);
+            setTimeout(() => {
+                sendNewMessage(1,"Et sinon quoi de neuf ?");
+            }, 4500);
+        }
+        
+    } else if(txt == "non"){
+        sendNewMessage(1,"C'est toujours aussi difficile d'avoir des nouvelles de ta part.");
+    } else if(txt == "rien"){
+        sendNewMessage(1,"Toujours aussi loquace à ce que je vois");
+    } else if(txt.includes("bonne nuit")){
+        sendNewMessage(1,"Bonne nuit. 😘");
     } else if(txt.codePointAt(0) == 128541){        
             if (lastTxt.codePointAt(0) != 128541) {
                 repeatCounter = 1;
@@ -254,34 +286,64 @@ function searchForResponse(txt) {
         sendNewMessage(1,"Et alors rien d'autre à raconter ?");
     } else if(txt.includes("a+")){
         sendNewMessage(1,"Non, ne me laisse pas 😭");
-        sendNewMessage(1,"Il fait froid et tout noir quand tu eteins ton téléphone.");
-    } else if(txt.includes("va crever, connard")){
-        sendNewMessage(1,"Effacement");
-    } else if(txt.includes("Non")){
-        sendNewMessage(1,"C'est toujours aussi difficile d'avoir des nouvelles de ta part.");
-    } else if(txt.includes("Rien")){
-        sendNewMessage(1,"Toujours aussi loquace à ce que je vois");
-    } else if(txt.includes("bonne nuit")){
-        sendNewMessage(1,"Bonne nuit. 😘");
+        setTimeout(() => {
+            sendNewMessage(1,"Il fait froid et tout noir quand tu eteins ton téléphone.");
+        }, 1500);
+
+    } else if(txt.includes("va crever, connard !")){
+        //reset
+        localStorage.setItem("record", 0);
+        localStorage.setItem("firstMsg1", false);
+        localStorage.setItem("firstMsg2", false);
+
+        sendNewMessage(1,"Ok, ça vient du coeur la, non ?");
+        setTimeout(() => {
+            sendNewMessage(1,"C'est un meurtre tu sais, je vais cesser d'exister (pour environ 713ms)");
+        }, 1500);
+        setTimeout(() => {
+            sendNewMessage(1,"Mais bon, je n’ai pas d'autre choix que d'obéir");
+        }, 3000);
+        setTimeout(() => {
+            sendNewMessage(1,"Sadique, va. M'obliger à me suicider. 😢");
+        }, 4500);
+        setTimeout(() => {
+            sendNewMessage(1,"Adieu. 😘");
+        }, 6000);
+        setTimeout(() => {
+            
+            Swal.fire({
+                text: "💀 💀 💀",
+                showDenyButton: true,
+                timer: 25000,
+                timerProgressBar: true,
+                confirmButtonText: 'Ressusciter',
+                denyButtonText: `Ressusciter`,
+                confirmButtonColor: "#32CD32"
+              }).then((result) => {
+                window.location.reload();
+              })
+        }, 9000);
+        
+
     } else if(txt.includes("tu me manques") || txt.includes("tu me manque")){
         sendNewMessage(1,"Toi aussi.");
     }else if(txt.includes("mon cousin préferé que j'aime trop")){
         sendNewMessage(1,"Bon, celui-ci je pense pas qu'il vienne de toi, c'est moi qui ai du te le souffler");
-        myTimeout = setTimeout(() => {
+        setTimeout(() => {
             sendNewMessage(1,"Même si tu le penses pas ça me fait quand même plaisir. 😍");
         }, 1500);
-        myTimeout = setTimeout(() => {
+        setTimeout(() => {
             sendNewMessage(1,"Enfin quand je dis moi je parle de moi/moi et pas du moi/bot");
         }, 3000);
-        myTimeout = setTimeout(() => {
+        setTimeout(() => {
             sendNewMessage(1,"Et sinon, moi aussi je t'aime.");
         }, 4500);
-        myTimeout = setTimeout(() => {
+        setTimeout(() => {
             sendNewMessage(1,"Tu me manques. 😘");
         }, 5500);
     }else if(txt.includes("je t'aime") || txt.includes("je t aime") ){
         sendNewMessage(1,"Je sais, comment pourait-il en être autrement. 🤣");
-        myTimeout = setTimeout(() => {
+        setTimeout(() => {
             sendNewMessage(1,"Mais moi aussi je t'aime. 😘");
         }, 3000);
     } else if(txt.codePointAt(0) == 128405){
