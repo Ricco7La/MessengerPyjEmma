@@ -345,14 +345,14 @@ function searchForResponse(txt) {
         sendNewMessage(1,"Je sais, comment pourait-il en être autrement. 🤣");
         setTimeout(() => {
             sendNewMessage(1,"Mais moi aussi je t'aime. 😘");
-        }, 3000);
+        }, 2500);
     } else if(txt.codePointAt(0) == 128405){
         sendNewMessage(1,"T'inquiète, moi aussi je t'aime. 😘");
     } else if(txt.codePointAt(0) == 129318){
         sendNewMessage(1,"Tu l'aimes vraiment beaucoup cet emoji, non ?");
         sendNewMessage(1,"😝");
     } else if(txt.codePointAt(0) > 120000 && txt.codePointAt(0) < 150000){
-        sendNewMessage(1,txt);        
+        sendNewMessage(1,txt);          
     }else {
         var rnd = Math.floor(Math.random() * 10 + 1);
         
