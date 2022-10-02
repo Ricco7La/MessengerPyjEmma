@@ -82,6 +82,9 @@ function sendNewMessage(from, msgText) {
         conversation.append(messagesWrapper);
     }
 
+    // Scroll to bottom
+    conversation[0].scrollTop = conversation[0].scrollHeight
+    
     // Make message input empty.
     newMessage.val(null);
     textBarInput.val(null);

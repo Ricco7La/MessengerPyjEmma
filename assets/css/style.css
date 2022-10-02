@@ -2,15 +2,22 @@
     font-family: myHelvetica;
     src: url(../Helvetica.ttf);
   }
+
 html {
-    height: 98%;
+    height: 100%;
+    margin: 0px;
 }
 
 body {
     background-color: #e9f8ff;
-    height: 100%;
+    position: absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
     font-size: 3em;
 }
+
 input{
     font-size: 1.5em;
 }
@@ -42,7 +49,7 @@ input{
     font-weight: bold;
 }
 .conversation {
-    height: calc(100% - 280px);
+    height: calc(100% - 300px);
     overflow: auto;
     padding: 40px 20px 0 20px;
 }
@@ -181,4 +188,8 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
+}
+
+#blank {
+    height: 20px;
 }
