@@ -314,6 +314,8 @@ function searchForResponse(txt) {
                 showDenyButton: true,
                 timer: 25000,
                 timerProgressBar: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
                 confirmButtonText: 'Ressusciter',
                 denyButtonText: `Ressusciter`,
                 confirmButtonColor: "#32CD32"
